@@ -126,10 +126,11 @@ for l in sorted(label_freq, key=label_freq.get, reverse=True):
 
 
 emoji_dict = {"joy":"😂", "fear":"😱", "anger":"😠", "sadness":"😢", "disgust":"😒", "shame":"😳", "guilt":"😳"}
-t1 = "This looks so impressive"
-t2 = "I have a fear of dogs"
-t3 = "My dog died yesterday"
-t4 = "I don't love you anymore..!"
+print("Input four sentences to predict the emotion of each:") 
+t1 = str(input("First sentence: "))
+t2 = str(input("Second sentence: "))
+t3 = str(input("Third sentence: "))
+t4 = str(input("Fourth sentence: "))
 
 # texts = [t1, t2, t3, t4]
 # for text in texts: 
