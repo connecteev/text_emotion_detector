@@ -9,51 +9,8 @@ from sklearn.svm import SVC
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.feature_extraction import DictVectorizer
 import joblib
-
-print("\n\n***** Welcome to Emotion Predictor! *****\n\n")
-
-dummy_sentences = [
-    "This looks so impressive",
-    "I have a fear of dogs",
-    "My dog died yesterday",
-    "I don't love you anymore..!",
-    "Go kill yourself you piece of shit!"
-]
-num_dummy_sentences = len(dummy_sentences)
-
-for x in range(num_dummy_sentences):
-  print(x, dummy_sentences[x])
-
-max_sentences = 5
-num_sentences = input("How many additional sentences would you like to predict the emotion for? ")
-if num_sentences.isdigit():
-    num_sentences = int(num_sentences)
-    if (num_sentences > max_sentences):
-        print("Error!", num_sentences, "is more than the maximum number of sentences:", max_sentences)
-        quit()
-else:
-    print("Error:", num_sentences, "is not an integer.")
-    quit()
-
-all_sentences = dummy_sentences.copy()
-for x in range(num_sentences):
-    sentence_num = num_dummy_sentences + x
-    sent = str(input("Enter sentence # " + str(sentence_num) + " : "))
-    all_sentences.append(sent)
-
-# print("\ndummy_sentences\n") 
-# for x in range(num_dummy_sentences):
-#   print(x, dummy_sentences[x])
-
-num_all_sentences = len(all_sentences)
-
-print("\nWe will be predicting emotion for each of the following", num_all_sentences, "sentences...\n") 
-for x in range(num_all_sentences):
-    print(x, all_sentences[x])
-
-
-
 
 
 
@@ -124,7 +81,6 @@ def train_test(clf, X_train, X_test, y_train, y_test):
     test_acc = accuracy_score(y_test, clf.predict(X_test))
     return train_acc, test_acc
 
-from sklearn.feature_extraction import DictVectorizer
 vectorizer = DictVectorizer(sparse = True)
 X_train = vectorizer.fit_transform(X_train)
 X_test = vectorizer.transform(X_test)
@@ -170,25 +126,5 @@ for label, _ in data:
 for l in sorted(label_freq, key=label_freq.get, reverse=True):
     print("{:10}({})  {}".format(convert_label(l, emotions), l, label_freq[l]))
 
-
-
-
-
-
-
-
-emoji_dict = {"joy":"😂", "fear":"😱", "anger":"😠", "sadness":"😢", "disgust":"😒", "shame":"😳", "guilt":"😳"}
-print("Input four sentences to predict the emotion of each:") 
-
-def predict_emotion(txt):
-    features = create_feature(txt, nrange=(1, 4))
-    features = vectorizer.transform(features)
-    prediction = clf.predict(features)[0]
-    print(txt,emoji_dict[prediction])
-
-print("\nPredicting emotion for each of the", num_all_sentences, "sentences...\n") 
-for text in all_sentences:
-    predict_emotion(text)
-
-print('\a')
+print("Model Trained and Saved\a")
 # quit()
