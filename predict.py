@@ -46,7 +46,6 @@ num_dummy_sentences = len(dummy_sentences)
 for x in range(num_dummy_sentences):
   print(x, dummy_sentences[x])
 
-max_sentences = 5
 num_sentences = input("How many additional sentences would you like to predict the emotion for? ")
 if num_sentences.isdigit():
     num_sentences = int(num_sentences)
