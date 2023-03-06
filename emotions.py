@@ -9,6 +9,7 @@ from sklearn.svm import SVC
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.externals import joblib
 
 
 def read_data(file):
@@ -108,6 +109,9 @@ with open('saved_model', 'wb') as f:
     pickle.dump(clf, f)
 with open('saved_model', 'rb') as f:
     clf = pickel.load(f)
+# Can also use joblib above as:
+# joblib.dump(clf, 'saved_model')
+# clf = joblib.load('saved_model')
     
 
 l = ["joy", 'fear', "anger", "sadness", "disgust", "shame", "guilt"]
