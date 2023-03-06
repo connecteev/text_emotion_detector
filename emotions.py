@@ -108,7 +108,7 @@ for clf in clifs:
 with open('saved_model', 'wb') as f:
     pickle.dump(clf, f)
 with open('saved_model', 'rb') as f:
-    clf = pickel.load(f)
+    clf = pickle.load(f)
 # Can also use joblib above as:
 # joblib.dump(clf, 'saved_model')
 # clf = joblib.load('saved_model')
