@@ -123,22 +123,26 @@ for l in sorted(label_freq, key=label_freq.get, reverse=True):
 
 
 
-
-
 emoji_dict = {"joy":"😂", "fear":"😱", "anger":"😠", "sadness":"😢", "disgust":"😒", "shame":"😳", "guilt":"😳"}
 print("Input four sentences to predict the emotion of each:") 
+# t1 = "This looks so impressive"
+# t2 = "I have a fear of dogs"
+# t3 = "My dog died yesterday"
+# t4 = "I don't love you anymore..!"
+# t5 = "Go kill yourself you piece of shit!"
+
 t1 = str(input("First sentence: "))
 t2 = str(input("Second sentence: "))
 t3 = str(input("Third sentence: "))
 t4 = str(input("Fourth sentence: "))
+t5 = str(input("Fifth sentence: "))
 
-# texts = [t1, t2, t3, t4]
+# texts = [t1, t2, t3, t4, t5]
 # for text in texts: 
 #     features = create_feature(text, nrange=(1, 4))
 #     features = vectorizer.transform(features)
 #     prediction = clf.predict(features)[0]
 #     print( text,emoji_dict[prediction])
-
 
 
 def predict_emotion(txt):
@@ -147,10 +151,7 @@ def predict_emotion(txt):
     prediction = clf.predict(features)[0]
     print(txt,emoji_dict[prediction])
 
-t5 = "Go kill yourself you piece of shit!"
-predict_emotion(t5)
-
-texts = [t1, t2, t3, t4]
+texts = [t1, t2, t3, t4, t5]
 for text in texts: 
     predict_emotion(text)
 
