@@ -1,6 +1,7 @@
 # Start with testing code from https://thecleverprogrammer.com/2021/02/19/text-emotions-detection-with-machine-learning/
 
 import re 
+import pickle
 from collections import Counter
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -8,6 +9,7 @@ from sklearn.svm import SVC
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.externals import joblib
 
 print("\n\n***** Welcome to Emotion Predictor! *****\n\n")
 
@@ -149,10 +151,14 @@ for clf in clifs:
     print("| {:25} | {:17.7f} | {:13.7f} |".format(clf_name, train_acc, test_acc))
 
 
-
-
-
-
+with open('saved_model', 'wb') as f:
+    pickle.dump(clf, f)
+with open('saved_model', 'rb') as f:
+    clf = pickle.load(f)
+# Can also use joblib above as:
+# joblib.dump(clf, 'saved_model')
+# clf = joblib.load('saved_model')
+    
 
 l = ["joy", 'fear', "anger", "sadness", "disgust", "shame", "guilt"]
 l.sort()
@@ -169,8 +175,26 @@ for l in sorted(label_freq, key=label_freq.get, reverse=True):
 
 
 
+
+
 emoji_dict = {"joy":"😂", "fear":"😱", "anger":"😠", "sadness":"😢", "disgust":"😒", "shame":"😳", "guilt":"😳"}
 print("Input four sentences to predict the emotion of each:") 
+<<<<<<< HEAD
+=======
+t1 = str(input("First sentence: "))
+t2 = str(input("Second sentence: "))
+t3 = str(input("Third sentence: "))
+t4 = str(input("Fourth sentence: "))
+
+# texts = [t1, t2, t3, t4]
+# for text in texts: 
+#     features = create_feature(text, nrange=(1, 4))
+#     features = vectorizer.transform(features)
+#     prediction = clf.predict(features)[0]
+#     print( text,emoji_dict[prediction])
+
+>>>>>>> 105861956f01cbd89c4ac0e1cd3f664f5bca2681
+
 
 def predict_emotion(txt):
     features = create_feature(txt, nrange=(1, 4))
@@ -178,8 +202,16 @@ def predict_emotion(txt):
     prediction = clf.predict(features)[0]
     print(txt,emoji_dict[prediction])
 
+<<<<<<< HEAD
 print("\nPredicting emotion for each of the", num_all_sentences, "sentences...\n") 
 for text in all_sentences:
+=======
+t5 = "Go kill yourself you piece of shit!"
+predict_emotion(t5)
+
+texts = [t1, t2, t3, t4]
+for text in texts: 
+>>>>>>> 105861956f01cbd89c4ac0e1cd3f664f5bca2681
     predict_emotion(text)
 
 print('\a')
