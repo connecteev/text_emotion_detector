@@ -9,7 +9,7 @@ from sklearn.svm import SVC
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.externals import joblib
+import joblib
 
 print("\n\n***** Welcome to Emotion Predictor! *****\n\n")
 
